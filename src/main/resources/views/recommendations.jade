@@ -1,0 +1,52 @@
+doctype html
+html(ng-app="ngApp")
+    head
+        title TV Jackal
+        :assets
+            webjar:angular.js
+            controllers.js
+    body(ng-controller="RecommendationsCtrl")
+        h3 Films
+        table
+            tr
+                th Title
+                th Channel
+                th Time
+                th 
+            for film in recommendations.films
+                tr
+                    td= film.name
+                    td= film.channel
+                    td= film.startTime
+                    td
+                        button(ng-click="ignoreChannel('#{film.channel}')") Ignore Channel
+        h3 Show Premieres
+        table
+            tr
+                th Title
+                th Channel
+                th Time
+                th
+            for episode in recommendations.showPremieres
+                tr
+                    td= episode.show + ': ' + episode.title
+                    td= episode.channel
+                    td= episode.startTime
+                    td
+                        button(ng-click="ignoreChannel('#{episode.channel}')") Ignore Channel
+                        button(ng-click="ignoreShow('#{episode.show}')") Ignore Show
+        h3 Series Premieres
+        table
+            tr
+                th Title
+                th Channel
+                th Time
+                th
+            for episode in recommendations.seriesPremieres
+                tr
+                    td= episode.show + ': ' + episode.title
+                    td= episode.channel
+                    td= episode.startTime
+                    td
+                        button(ng-click="ignoreChannel('#{episode.channel}')") Ignore Channel
+                        button(ng-click="ignoreShow('#{episode.show}')") Ignore Show
