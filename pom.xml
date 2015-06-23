@@ -9,28 +9,22 @@
     <name>TV Jackal</name>
     <description>TV Jackal</description>
     <properties>
-        <spring-version>3.1.2.RELEASE</spring-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>${spring-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring-version}</version>
-        </dependency>
-        <dependency>
             <groupId>uk.co.codeecho.mandrake</groupId>
             <artifactId>mandrake</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>uk.co.codeecho.mandrake.plugins</groupId>
+            <artifactId>mandrake-spring</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>uk.co.codeecho.mandrake.plugins</groupId>
+            <artifactId>mandrake-crust</artifactId>
             <version>0.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

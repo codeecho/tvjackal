@@ -9,10 +9,10 @@
 
     <context:annotation-config/>
     
-    <bean id="mandrakeRequestHandler" class="uk.co.codeecho.mandrake.core.HttpRequestHandler">
+    <import resource="applicationContext_desktop.xml"/>
+    
+    <bean id="mandrakeRequestHandler" class="uk.co.codeecho.mandrake.plugins.spring.HttpRequestHandler">
         <constructor-arg ref="router"/>
     </bean>
-    
-    <bean id="router" class="uk.co.codeecho.tvjackal.route.Router"/>
     
 </beans>

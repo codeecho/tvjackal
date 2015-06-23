@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+    <context:annotation-config/>
+    
+    <bean id="entityMapper" class="biz.devspot.entity.framework.core.mapping.json.DataBackedObjectMapper"/>
+    
+    <bean id="mongo" class="com.mongodb.MongoClient">
+    </bean>
+    
+    <bean id="db" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject">
+            <ref local="mongo"/>
+        </property>
+        <property name="targetMethod">
+            <value>getDB</value>
+        </property>
+        <property name="arguments">
+            <value>tvjackal</value>
+        </property>
+    </bean>
+    
+    <bean class="biz.devspot.entity.framework.core.EntityManagerFactory">
+        <property name="manager">
+            <ref local="entityManager"/>
+        </property>
+    </bean>
+    
+    <bean id="entityManager" class="biz.devspot.entity.framework.core.EntityManagerImpl">
+        <constructor-arg ref="dao"/>
+    </bean>
+    
+    <bean id="dao" class="biz.devspot.entity.framework.core.dao.mongo.MongoDao">
+        <constructor-arg ref="db"/>
+        <constructor-arg ref="entityMapper"/>
+    </bean>
+    
+    <bean id="router" class="uk.co.codeecho.tvjackal.route.Router">
+        <constructor-arg ref="dao"/>
+    </bean>
+    
+</beans>
